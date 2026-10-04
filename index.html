@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<!-- Created by Erion Nezha — © 2026 All rights reserved -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Furgon.al — Orarët e furgonëve nga Tirana — GitHub</title>
+<style>
+:root{--bg:#070b16;--panel:#0d1426;--line:rgba(120,140,200,.16);--txt:#e9edf5;--mut:#93a0b8;--acc:#D43D2A;}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 20px 60px}
+header.hero{text-align:center;padding:44px 20px 30px}
+.hero h1{font-size:clamp(1.8rem,4.5vw,2.8rem);letter-spacing:-.02em}
+.hero h1 .dot{color:var(--acc)}
+.hero p{color:var(--mut);max-width:640px;margin:12px auto 0}
+.badges{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.badge{font-size:.8rem;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
+.badge b{color:var(--acc)}
+section{margin-top:44px}
+h2{font-size:1.25rem;margin-bottom:6px}
+h2 .dot{color:var(--acc)}
+.sub{color:var(--mut);font-size:.95rem;margin-bottom:16px}
+.demo-frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000;box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+.demo-frame iframe{width:100%;height:82vh;border:0;display:block;background:#000}
+.open-new{display:inline-block;margin-top:14px;color:var(--acc);text-decoration:none;font-weight:600;font-size:.95rem}
+.open-new:hover{text-decoration:underline}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:-1px}
+.tab{background:var(--panel);border:1px solid var(--line);border-bottom:0;color:var(--mut);
+     padding:10px 18px;border-radius:10px 10px 0 0;cursor:pointer;font-size:.9rem;font-family:ui-monospace,Menlo,Consolas,monospace}
+.tab.active{color:var(--txt);background:#111a30;border-color:var(--acc)}
+.tab.active b{color:var(--acc)}
+.codebox{border:1px solid var(--line);border-radius:0 12px 12px 12px;background:#0a0f1e;position:relative}
+.codebox pre{margin:0;padding:20px;overflow:auto;max-height:640px;font-size:.82rem;line-height:1.55;
+             font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre}
+.codebox code{color:#cdd6ea}
+.copybtn{position:absolute;top:10px;right:10px;background:#16213c;border:1px solid var(--line);color:var(--txt);
+         border-radius:8px;padding:6px 12px;font-size:.78rem;cursor:pointer}
+.copybtn:hover{border-color:var(--acc)}
+.codepane{display:none}.codepane.active{display:block}
+.tk-cmt{color:#5b6b8c;font-style:italic}.tk-str{color:#8ce99a}.tk-kw{color:#c792ea}
+.tk-tag{color:#7dd3fc}.tk-attr{color:#fbbf24}.tk-at{color:#f472b6}.tk-num{color:#fb923c}
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--mut);font-size:.9rem}
+footer strong{color:var(--txt)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<h1>Furgon.al <span class="dot">—</span> Orarët</h1>
+<p>Orarët e furgonëve dhe autobusëve ndërqytetas nga Tirana: 29 destinacione, 179 nisje, countdown live.</p>
+<div class="badges"><span class="badge"><b>●</b> Demo Live</span><span class="badge"><b>{ }</b> Kodi Burim</span><span class="badge">GitHub Pages</span></div>
+</header>
+
+<section>
+<h2><span class="dot">▸</span> Demo Live</h2>
+<p class="sub">Zgjidh destinacionin dhe shiko nisjet e ardhshme live.</p>
+<div class="demo-frame"><iframe src="demo/" title="Demo Live" loading="lazy"></iframe></div>
+<a class="open-new" href="demo/" target="_blank" rel="noopener">Hape demo-n në tab të ri ↗</a>
+</section>
+
+<section>
+<h2><span class="dot">▸</span> Kodi Burim</h2>
+<p class="sub">Kodi i plotë i projektit, i lexueshëm direkt këtu.</p>
+<div class="tabs"><button class="tab active" data-f="f0"><b>●</b> demo/index.html</button>
+<button class="tab" data-f="f1"><b>●</b> src/App.jsx</button>
+<button class="tab" data-f="f2"><b>●</b> src/lib/data.js</button>
+<button class="tab" data-f="f3"><b>●</b> src/index.css</button></div>
+<div class="codepane active" id="pane-f0"><div class="codebox"><button class="copybtn">Kopjo</button><pre><code>&lt;!doctype html&gt;
+<span class="tk-cmt">&lt;!-- Created by Erion Nezha — © 2026 All rights reserved --&gt;</span>
+&lt;<span class="tk-tag">html</span> <span class="tk-attr">lang</span>=<span class="tk-str">&quot;sq&quot;</span>&gt;
+  &lt;<span class="tk-tag">head</span>&gt;
+    &lt;<span class="tk-tag">meta</span> <span class="tk-attr">charset</span>=<span class="tk-str">&quot;UTF-8&quot;</span> /&gt;
+    &lt;<span class="tk-tag">meta</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;viewport&quot;</span> <span class="tk-attr">content</span>=<span class="tk-str">&quot;width=device-width, initial-scale=1.0, viewport-fit=cover&quot;</span> /&gt;
+    &lt;<span class="tk-tag">title</span>&gt;Furgon.al — Orari i furgonëve nga Tirana&lt;/<span class="tk-tag">title</span>&gt;
+    &lt;<span class="tk-tag">meta</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;description&quot;</span> <span class="tk-attr">content</span>=<span class="tk-str">&quot;Orari i furgonëve dhe autobusëve ndërqytetas që nisen nga Tirana: Durrës, Shkodër, Vlorë, Sarandë, Korçë e më shumë. Çmime, terminale, nisje.&quot;</span> /&gt;
+    &lt;<span class="tk-tag">meta</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;theme-color&quot;</span> <span class="tk-attr">content</span>=<span class="tk-str">&quot;#f6f1e7&quot;</span> /&gt;
+    &lt;<span class="tk-tag">link</span> <span class="tk-attr">rel</span>=<span class="tk-str">&quot;manifest&quot;</span> <span class="tk-attr">href</span>=<span class="tk-str">&quot;./manifest.webmanifest&quot;</span> /&gt;
+    &lt;<span class="tk-tag">link</span> <span class="tk-attr">rel</span>=<span class="tk-str">&quot;icon&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;image/png&quot;</span> <span class="tk-attr">href</span>=<span class="tk-str">&quot;./icons/icon-192.png&quot;</span> /&gt;
+    &lt;<span class="tk-tag">link</span> <span class="tk-attr">rel</span>=<span class="tk-str">&quot;apple-touch-icon&quot;</span> <span class="tk-attr">href</span>=<span class="tk-str">&quot;./icons/apple-touch-icon.png&quot;</span> /&gt;
+    &lt;<span class="tk-tag">meta</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;apple-mobile-web-app-capable&quot;</span> <span class="tk-attr">content</span>=<span class="tk-str">&quot;yes&quot;</span> /&gt;
+    &lt;<span class="tk-tag">meta</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;apple-mobile-web-app-status-bar-style&quot;</span> <span class="tk-attr">content</span>=<span class="tk-str">&quot;default&quot;</span> /&gt;
+    &lt;<span class="tk-tag">meta</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;apple-mobile-web-app-title&quot;</span> <span class="tk-attr">content</span>=<span class="tk-str">&quot;Furgon.al&quot;</span> /&gt;
+    &lt;<span class="tk-tag">script</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;module&quot;</span> crossorigin <span class="tk-attr">src</span>=<span class="tk-str">&quot;./assets/index-D7rkQysh.js&quot;</span>&gt;&lt;/<span class="tk-tag">script</span>&gt;
+    &lt;<span class="tk-tag">link</span> <span class="tk-attr">rel</span>=<span class="tk-str">&quot;stylesheet&quot;</span> crossorigin <span class="tk-attr">href</span>=<span class="tk-str">&quot;./assets/index-DNshWSIv.css&quot;</span>&gt;
+  &lt;/<span class="tk-tag">head</span>&gt;
+  &lt;<span class="tk-tag">body</span>&gt;
+    &lt;<span class="tk-tag">div</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;root&quot;</span>&gt;&lt;/<span class="tk-tag">div</span>&gt;
+  &lt;/<span class="tk-tag">body</span>&gt;
+&lt;/<span class="tk-tag">html</span>&gt;
+</code></pre></div></div>
+<div class="codepane" id="pane-f1"><div class="codebox"><button class="copybtn">Kopjo</button><pre><code>import { useEffect, useState } from &#x27;react&#x27;;
+import Header from &#x27;./components/Header&#x27;;
+import Hero from &#x27;./components/Hero&#x27;;
+import { LiveStrip, RouteGrid } from &#x27;./components/Home&#x27;;
+import RouteDetail from &#x27;./components/RouteDetail&#x27;;
+import Terminals from &#x27;./components/Terminals&#x27;;
+import Footer from &#x27;./components/Footer&#x27;;
+import { searchRoutes, routes } from &#x27;./lib/data&#x27;;
+import { LangProvider, useLang } from &#x27;./lib/i18n.jsx&#x27;;
+import { getFavs } from &#x27;./lib/favs&#x27;;
+
+<span class="tk-kw">function</span> parseHash() {
+  <span class="tk-kw">const</span> h = location.hash.replace(/^#\/?/, &#x27;&#x27;);
+  <span class="tk-kw">if</span> (h.startsWith(&#x27;r/&#x27;)) <span class="tk-kw">return</span> { view: &#x27;route&#x27;, id: h.slice(2) };
+  <span class="tk-kw">if</span> (h === &#x27;terminalet&#x27;) <span class="tk-kw">return</span> { view: &#x27;terminals&#x27; };
+  <span class="tk-kw">if</span> (h === &#x27;te-miat&#x27;) <span class="tk-kw">return</span> { view: &#x27;mine&#x27; };
+  <span class="tk-kw">return</span> { view: &#x27;home&#x27; };
+}
+
+<span class="tk-kw">function</span> Mine() {
+  <span class="tk-kw">const</span> { t } = useLang();
+  <span class="tk-kw">const</span> favs = getFavs();
+  <span class="tk-kw">const</span> list = routes.filter((r) =&gt; favs.includes(r.id));
+  <span class="tk-kw">return</span> (
+    &lt;div className=<span class="tk-str">&quot;wrap&quot;</span> style={{ paddingTop: 40, minHeight: &#x27;50vh&#x27; }}&gt;
+      &lt;h1 style={{ fontFamily: &#x27;<span class="tk-kw">var</span>(--display)&#x27;, fontSize: &#x27;clamp(30px,5vw,46px)&#x27;, textTransform: &#x27;uppercase&#x27;, margin: &#x27;0 0 20px&#x27; }}&gt;
+        ♥ {t(&#x27;fav.title&#x27;)}
+      &lt;/h1&gt;
+      {list.length ? (
+        &lt;RouteGrid list={list} /&gt;
+      ) : (
+        &lt;div className=<span class="tk-str">&quot;empty&quot;</span> style={{ border: &#x27;2px dashed <span class="tk-kw">var</span>(--line)&#x27;, borderRadius: 18 }}&gt;
+          &lt;b&gt;{t(&#x27;fav.empty&#x27;)}&lt;/b&gt;
+          {t(&#x27;fav.emptySub&#x27;)}
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+<span class="tk-kw">function</span> Shell() {
+  <span class="tk-kw">const</span> [route, setRoute] = useState(parseHash);
+  <span class="tk-kw">const</span> [q, setQ] = useState(&#x27;&#x27;);
+
+  useEffect(() =&gt; {
+    <span class="tk-kw">const</span> onH = () =&gt; { setRoute(parseHash()); window.scrollTo(0, 0); };
+    window.addEventListener(&#x27;hashchange&#x27;, onH);
+    <span class="tk-kw">return</span> () =&gt; window.removeEventListener(&#x27;hashchange&#x27;, onH);
+  }, []);
+
+  <span class="tk-kw">return</span> (
+    &lt;&gt;
+      &lt;Header view={route.view} /&gt;
+      {route.view === &#x27;home&#x27; &amp;&amp; (
+        &lt;main&gt;
+          &lt;Hero q={q} setQ={setQ} /&gt;
+          {!q.trim() &amp;&amp; &lt;LiveStrip /&gt;}
+          &lt;RouteGrid list={searchRoutes(q)} /&gt;
+        &lt;/main&gt;
+      )}
+      {route.view === &#x27;route&#x27; &amp;&amp; &lt;main&gt;&lt;RouteDetail id={route.id} /&gt;&lt;/main&gt;}
+      {route.view === &#x27;terminals&#x27; &amp;&amp; &lt;main&gt;&lt;Terminals /&gt;&lt;/main&gt;}
+      {route.view === &#x27;mine&#x27; &amp;&amp; &lt;main&gt;&lt;Mine /&gt;&lt;/main&gt;}
+      &lt;Footer /&gt;
+    &lt;/&gt;
+  );
+}
+
+export default <span class="tk-kw">function</span> App() {
+  <span class="tk-kw">return</span> (
+    &lt;LangProvider&gt;
+      &lt;Shell /&gt;
+    &lt;/LangProvider&gt;
+  );
+}
+</code></pre></div></div>
+<div class="codepane" id="pane-f2"><div class="codebox"><button class="copybtn">Kopjo</button><pre><code>import raw from &#x27;../../research/schedules.json&#x27;;
+
+<span class="tk-kw">const</span> routesRaw = raw.routes || raw;
+
+export <span class="tk-kw">const</span> norm = (s = &#x27;&#x27;) =&gt;
+  s.toLowerCase().replace(/ë/g, &#x27;e&#x27;).replace(/ç/g, &#x27;c&#x27;);
+
+export <span class="tk-kw">const</span> slug = (s = &#x27;&#x27;) =&gt;
+  norm(s).replace(/[^a-z0-9]+/g, &#x27;-&#x27;).replace(/^-|-$/g, &#x27;&#x27;);
+
+<span class="tk-cmt">/** Emra miqësorë shqip (+ anglisht) për terminalet (të dhënat vijnë me emra të përzier EN) */</span>
+export <span class="tk-kw">function</span> terminaliFriendly(t = {}) {
+  <span class="tk-kw">const</span> emri = t.emri || &#x27;&#x27;;
+  <span class="tk-kw">const</span> hasSN = /south and north/i.test(emri);
+  <span class="tk-kw">const</span> hasEast = /east/i.test(emri);
+  <span class="tk-kw">if</span> (/i_paverifikuar/i.test(emri))
+    <span class="tk-kw">return</span> { emri: &#x27;Terminali po verifikohet&#x27;, emri_en: &#x27;Terminal being verified&#x27;, zona: &#x27;&#x27;, zona_en: &#x27;&#x27;, adresa: &#x27;&#x27;, mapsQuery: <span class="tk-kw">null</span>, ok: <span class="tk-kw">false</span> };
+  <span class="tk-kw">if</span> (hasSN &amp;&amp; hasEast)
+    <span class="tk-kw">return</span> { emri: &#x27;Terminali Jugor–Verior / Lindor&#x27;, emri_en: &#x27;South–North / East Terminal&#x27;, zona: &#x27;Kthesa e Kamzës / Qyteti Studenti&#x27;, zona_en: &#x27;Kamza Overpass / Student City&#x27;, adresa: &#x27;Tiranë&#x27;, mapsQuery: &#x27;Kthesa e Kamzës, Tiranë&#x27;, ok: <span class="tk-kw">true</span> };
+  <span class="tk-kw">if</span> (hasSN)
+    <span class="tk-kw">return</span> { emri: &#x27;Terminali Jugor–Verior&#x27;, emri_en: &#x27;South–North Terminal&#x27;, zona: t.zona || &#x27;Kthesa e Kamzës&#x27;, zona_en: &#x27;Kamza Overpass&#x27;, adresa: t.adresa || &#x27;Pranë mbikalimit të Kamzës, Tiranë&#x27;, mapsQuery: &#x27;Terminali i Autobusëve, Kthesa e Kamzës, Tiranë&#x27;, ok: <span class="tk-kw">true</span> };
+  <span class="tk-kw">if</span> (hasEast)
+    <span class="tk-kw">return</span> { emri: &#x27;Terminali Lindor&#x27;, emri_en: &#x27;East Terminal&#x27;, zona: &#x27;Qyteti Studenti&#x27;, zona_en: &#x27;Student City&#x27;, adresa: &#x27;Rr. Arben Broci, Qyteti Studenti, Tiranë&#x27;, mapsQuery: &#x27;Rruga Arben Broci, Qyteti Studenti, Tiranë&#x27;, ok: <span class="tk-kw">true</span> };
+  <span class="tk-kw">if</span> (/garibaldi/i.test(emri))
+    <span class="tk-kw">return</span> { emri: &#x27;Sheshi Garibaldi&#x27;, emri_en: &#x27;Garibaldi Square&#x27;, zona: &#x27;Qendër&#x27;, zona_en: &#x27;Center&#x27;, adresa: &#x27;Sheshi Garibaldi, Tiranë&#x27;, mapsQuery: &#x27;Sheshi Garibaldi, Tiranë&#x27;, ok: <span class="tk-kw">true</span> };
+  <span class="tk-kw">if</span> (/opera|muze/i.test(emri))
+    <span class="tk-kw">return</span> { emri: &#x27;Te Pallati i Operas&#x27;, emri_en: &#x27;At the Opera Palace&#x27;, zona: &#x27;Qendër&#x27;, zona_en: &#x27;Center&#x27;, adresa: &#x27;Zona e Muzeut Kombëtar, Tiranë&#x27;, mapsQuery: &#x27;Pallati i Operas, Tiranë&#x27;, ok: <span class="tk-kw">true</span> };
+  <span class="tk-kw">return</span> { emri, emri_en: emri, zona: t.zona || &#x27;&#x27;, zona_en: t.zona || &#x27;&#x27;, adresa: t.adresa || &#x27;&#x27;, mapsQuery: emri ? <span class="tk-str">`${emri}, Tiranë`</span> : <span class="tk-kw">null</span>, ok: <span class="tk-kw">true</span> };
+}
+
+export <span class="tk-kw">const</span> mapsDirUrl = (term) =&gt;
+  term.mapsQuery ? <span class="tk-str">`https://www.google.com/maps/dir/?api=1&amp;destination=${encodeURIComponent(term.mapsQuery)}`</span> : <span class="tk-kw">null</span>;
+
+export <span class="tk-kw">const</span> tname = (term, lang) =&gt; (lang === &#x27;en&#x27; ? term.emri_en : term.emri);
+export <span class="tk-kw">const</span> tzone = (term, lang) =&gt; (lang === &#x27;en&#x27; ? term.zona_en : term.zona);
+
+export <span class="tk-kw">const</span> routes = routesRaw.map((r) =&gt; ({
+  ...r,
+  id: slug(r.destinacioni),
+  terminali: terminaliFriendly(r.terminali),
+}));
+
+export <span class="tk-kw">const</span> routeById = (id) =&gt; routes.find((r) =&gt; r.id === id);
+
+export <span class="tk-kw">function</span> searchRoutes(q) {
+  <span class="tk-kw">const</span> nq = norm(q.trim());
+  <span class="tk-kw">if</span> (!nq) <span class="tk-kw">return</span> routes;
+  <span class="tk-kw">return</span> routes.filter((r) =&gt; norm(r.destinacioni).includes(nq));
+}
+
+export <span class="tk-kw">const</span> totalNisje = routes.reduce((a, r) =&gt; a + (r.nisjet?.length || 0), 0);
+
+export <span class="tk-kw">const</span> BESIMI = {
+  i_verifikuar: { label: &#x27;E verifikuar&#x27;, cls: &#x27;ok&#x27; },
+  i_pjesshem: { label: &#x27;Të dhëna të pjesshme&#x27;, cls: &#x27;warn&#x27; },
+  i_paverifikuar: { label: &#x27;Po verifikohet&#x27;, cls: &#x27;na&#x27; },
+};
+
+export <span class="tk-kw">const</span> DATA_VERIFIKIMI = &#x27;tetor 2026&#x27;;
+</code></pre></div></div>
+<div class="codepane" id="pane-f3"><div class="codebox"><button class="copybtn">Kopjo</button><pre><code><span class="tk-cmt">/* Furgon.al — &quot;BILETA&quot; theme: letër e ngrohtë, e kuqe sinjali, vija rruge.
+   E kundërta e identitetit të errët të ÇmimRadar-it — tematikë stacioni/bilete. */</span>
+:root {
+  --ink: <span class="tk-str">#f6f1e7</span>;          <span class="tk-cmt">/* page: letër */</span>
+  --ink2: <span class="tk-str">#efe7d3</span>;         <span class="tk-cmt">/* letër e thellë */</span>
+  --card: <span class="tk-str">#ffffff</span>;         <span class="tk-cmt">/* kartë */</span>
+  --card2: <span class="tk-str">#fbf7ec</span>;
+  --line: rgba(<span class="tk-num">26</span>, <span class="tk-num">36</span>, <span class="tk-num">64</span>, <span class="tk-num">0.14</span>);
+  --amber: <span class="tk-str">#e8442e</span>;        <span class="tk-cmt">/* e kuqe sinjali */</span>
+  --amber2: <span class="tk-str">#c9331f</span>;
+  --road: <span class="tk-str">#f5a623</span>;         <span class="tk-cmt">/* e verdhë rruge */</span>
+  --live: <span class="tk-str">#0e9f6e</span>;
+  --text: <span class="tk-str">#1a2440</span>;         <span class="tk-cmt">/* bojë */</span>
+  --muted: <span class="tk-str">#5d6b87</span>;
+  --muted2: <span class="tk-str">#98a1b5</span>;
+  --board: <span class="tk-str">#101b33</span>;        <span class="tk-cmt">/* tabela e stacionit */</span>
+  --board-amber: <span class="tk-str">#ffb020</span>;
+  --radius: <span class="tk-num">16px</span>;
+  --font: ui-sans-serif, system-ui, -apple-system, <span class="tk-str">&quot;Segoe UI&quot;</span>, Roboto, Arial, sans-serif;
+  --display: <span class="tk-str">&quot;Archivo Black&quot;</span>, ui-sans-serif, system-ui, sans-serif;
+  --mono: ui-monospace, <span class="tk-str">&quot;SF Mono&quot;</span>, <span class="tk-str">&quot;Cascadia Code&quot;</span>, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: <span class="tk-num">0</span>; background: var(--ink); color: var(--text);
+  font-family: var(--font); -webkit-font-smoothing: antialiased;
+  min-height: <span class="tk-num">100vh</span>;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+::selection { background: var(--amber); color: <span class="tk-str">#fff</span>; }
+.wrap { max-width: <span class="tk-num">1120px</span>; margin: <span class="tk-num">0</span> auto; padding: <span class="tk-num">0</span> <span class="tk-num">20px</span>; }
+
+<span class="tk-cmt">/* vija e rrugës — ndarës tematik */</span>
+.road-dash {
+  height: <span class="tk-num">8px</span>; border: none; margin: <span class="tk-num">0</span>;
+  background: repeating-linear-gradient(<span class="tk-num">90deg</span>, var(--text) <span class="tk-num">0</span> <span class="tk-num">34px</span>, transparent <span class="tk-num">34px</span> <span class="tk-num">62px</span>);
+  opacity: <span class="tk-num">0.85</span>;
+}
+.road-dash.red { background: repeating-linear-gradient(<span class="tk-num">90deg</span>, var(--amber) <span class="tk-num">0</span> <span class="tk-num">34px</span>, transparent <span class="tk-num">34px</span> <span class="tk-num">62px</span>); }
+
+<span class="tk-cmt">/* ---------- header ---------- */</span>
+.hdr {
+  position: sticky; top: <span class="tk-num">0</span>; z-index: <span class="tk-num">50</span>;
+  backdrop-filter: blur(<span class="tk-num">14px</span>); -webkit-backdrop-filter: blur(<span class="tk-num">14px</span>);
+  background: rgba(<span class="tk-num">246</span>, <span class="tk-num">241</span>, <span class="tk-num">231</span>, <span class="tk-num">0.85</span>);
+  border-bottom: <span class="tk-num">2px</span> solid var(--text);
+}
+.hdr-in { display: flex; align-items: center; gap: <span class="tk-num">18px</span>; height: <span class="tk-num">66px</span>; }
+.logo { display: flex; align-items: center; gap: <span class="tk-num">10px</span>; font-family: var(--display);
+  font-size: <span class="tk-num">19px</span>; letter-spacing: <span class="tk-num">0.02em</span>; }
+.logo .dot { width: <span class="tk-num">14px</span>; height: <span class="tk-num">14px</span>; background: var(--amber);
+  box-shadow: <span class="tk-num">3px</span> <span class="tk-num">3px</span> <span class="tk-num">0</span> var(--text); }
+.logo small { font-family: var(--font); font-weight: <span class="tk-num">700</span>; color: var(--muted); font-size: <span class="tk-num">12px</span>; }
+.nav { margin-left: auto; display: flex; gap: <span class="tk-num">6px</span>; }
+.nav a { padding: <span class="tk-num">9px</span> <span class="tk-num">16px</span>; border-radius: <span class="tk-num">999px</span>; color: var(--muted); font-weight: <span class="tk-num">700</span>; font-size: <span class="tk-num">14px</span>;
+  border: <span class="tk-num">2px</span> solid transparent; }
+.nav a:hover { color: var(--text); border-color: var(--line); }
+.nav a.on { color: <span class="tk-str">#fff</span>; background: var(--text); }
+.clock { font-family: var(--mono); font-size: <span class="tk-num">13px</span>; color: var(--text); border: <span class="tk-num">2px</span> solid var(--text);
+  padding: <span class="tk-num">6px</span> <span class="tk-num">12px</span>; border-radius: <span class="tk-num">10px</span>; white-space: nowrap; background: <span class="tk-str">#fff</span>; }
+html, body { overflow-x: clip; }
+<span class="tk-at">@media</span> (max-width: <span class="tk-num">640px</span>) {
+  .clock { display: none; }
+  .nav a { padding: <span class="tk-num">8px</span> <span class="tk-num">10px</span>; font-size: <span class="tk-num">13px</span>; }
+  <span class="tk-cmt">/* header dy-rreshtësh, stabil në ekrane të ngushta */</span>
+  .hdr-in { flex-wrap: wrap; height: auto; padding: <span class="tk-num">10px</span> <span class="tk-num">0</span>; row-gap: <span class="tk-num">10px</span>; }
+  .logo { font-size: <span class="tk-num">17px</span>; }
+  .lang-toggle { margin-left: auto; }
+  .nav { margin-left: <span class="tk-num">0</span>; order: <span class="tk-num">3</span>; width: <span class="tk-num">100</span>%; overflow-x: auto; padding-bottom: <span class="tk-num">2px</span>; }
+  .nav a { white-space: nowrap; }
+  <span class="tk-cmt">/* karta: titulli + badge + ♥ mbështillen pa dalë jashtë */</span>
+  .rcard-top { flex-wrap: wrap; }
+  .favbtn { width: <span class="tk-num">40px</span>; height: <span class="tk-num">40px</span>; }
+  .chip { padding: <span class="tk-num">10px</span> <span class="tk-num">18px</span>; }
+  .badge { font-size: <span class="tk-num">10px</span>; }
+}
+
+<span class="tk-cmt">/* ---------- hero ---------- */</span>
+.hero { position: relative; overflow: hidden; padding: <span class="tk-num">76px</span> <span class="tk-num">0</span> <span class="tk-num">0</span>;
+  background:
+    linear-gradient(rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.045</span>) <span class="tk-num">1px</span>, transparent <span class="tk-num">1px</span>),
+    linear-gradient(<span class="tk-num">90deg</span>, rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.045</span>) <span class="tk-num">1px</span>, transparent <span class="tk-num">1px</span>),
+    radial-gradient(<span class="tk-num">600px</span> <span class="tk-num">380px</span> at <span class="tk-num">85</span>% <span class="tk-num">10</span>%, rgba(<span class="tk-num">232</span>, <span class="tk-num">68</span>, <span class="tk-num">46</span>, <span class="tk-num">0.10</span>), transparent <span class="tk-num">60</span>%),
+    var(--ink);
+  background-size: <span class="tk-num">46px</span> <span class="tk-num">46px</span>, <span class="tk-num">46px</span> <span class="tk-num">46px</span>, auto, auto;
+}
+.hero-grid { position: relative; padding-bottom: <span class="tk-num">46px</span>; }
+.kicker { display: inline-flex; align-items: center; gap: <span class="tk-num">9px</span>; font-size: <span class="tk-num">12.5px</span>; font-weight: <span class="tk-num">800</span>;
+  letter-spacing: <span class="tk-num">0.14em</span>; text-transform: uppercase; color: <span class="tk-str">#fff</span>;
+  background: var(--text); padding: <span class="tk-num">8px</span> <span class="tk-num">16px</span>; border-radius: <span class="tk-num">8px</span>;
+  box-shadow: <span class="tk-num">4px</span> <span class="tk-num">4px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.18</span>); }
+.kicker .pulse { width: <span class="tk-num">9px</span>; height: <span class="tk-num">9px</span>; border-radius: <span class="tk-num">50</span>%; background: <span class="tk-str">#35d49a</span>;
+  box-shadow: <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">0</span> rgba(<span class="tk-num">53</span>,<span class="tk-num">212</span>,<span class="tk-num">154</span>,<span class="tk-num">0.7</span>); animation: pulse <span class="tk-num">2s</span> infinite; }
+<span class="tk-at">@keyframes</span> pulse { <span class="tk-num">70</span>% { box-shadow: <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">9px</span> rgba(<span class="tk-num">53</span>,<span class="tk-num">212</span>,<span class="tk-num">154</span>,<span class="tk-num">0</span>); } <span class="tk-num">100</span>% { box-shadow: <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">0</span> rgba(<span class="tk-num">53</span>,<span class="tk-num">212</span>,<span class="tk-num">154</span>,<span class="tk-num">0</span>); } }
+.hero h1 { font-family: var(--display); font-size: clamp(<span class="tk-num">42px</span>, <span class="tk-num">7.4vw</span>, <span class="tk-num">82px</span>); line-height: <span class="tk-num">0.95</span>;
+  margin: <span class="tk-num">24px</span> <span class="tk-num">0</span> <span class="tk-num">16px</span>; letter-spacing: -<span class="tk-num">0.01em</span>; text-transform: uppercase; }
+.hero h1 em { font-style: normal; color: var(--amber);
+  text-shadow: <span class="tk-num">4px</span> <span class="tk-num">4px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.12</span>); }
+.hero p.sub { color: var(--muted); font-size: clamp(<span class="tk-num">15px</span>, <span class="tk-num">2.4vw</span>, <span class="tk-num">19px</span>); max-width: <span class="tk-num">620px</span>;
+  margin: <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">30px</span>; line-height: <span class="tk-num">1.55</span>; font-weight: <span class="tk-num">500</span>; }
+
+.search { position: relative; max-width: <span class="tk-num">640px</span>; }
+.search input {
+  width: <span class="tk-num">100</span>%; font-size: <span class="tk-num">18px</span>; padding: <span class="tk-num">20px</span> <span class="tk-num">58px</span> <span class="tk-num">20px</span> <span class="tk-num">24px</span>; border-radius: <span class="tk-num">14px</span>;
+  background: <span class="tk-str">#fff</span>; border: <span class="tk-num">3px</span> solid var(--text); color: var(--text); outline: none;
+  box-shadow: <span class="tk-num">6px</span> <span class="tk-num">6px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.14</span>);
+  transition: box-shadow .<span class="tk-num">2s</span>, transform .<span class="tk-num">2s</span>;
+}
+.search input::placeholder { color: var(--muted2); }
+.search input:focus { box-shadow: <span class="tk-num">6px</span> <span class="tk-num">6px</span> <span class="tk-num">0</span> var(--amber); transform: translate(-<span class="tk-num">2px</span>, -<span class="tk-num">2px</span>); }
+.search .sicon { position: absolute; right: <span class="tk-num">22px</span>; top: <span class="tk-num">50</span>%; transform: translateY(-<span class="tk-num">50</span>%);
+  color: var(--text); pointer-events: none; }
+.chips { display: flex; flex-wrap: wrap; gap: <span class="tk-num">8px</span>; margin-top: <span class="tk-num">16px</span>; }
+.chip { border: <span class="tk-num">2px</span> solid var(--text); background: <span class="tk-str">#fff</span>; color: var(--text);
+  padding: <span class="tk-num">8px</span> <span class="tk-num">16px</span>; border-radius: <span class="tk-num">999px</span>; font-size: <span class="tk-num">14px</span>; font-weight: <span class="tk-num">700</span>; cursor: pointer;
+  transition: all .<span class="tk-num">15s</span>; box-shadow: <span class="tk-num">3px</span> <span class="tk-num">3px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.14</span>); }
+.chip:hover { background: var(--text); color: <span class="tk-str">#fff</span>; transform: translate(-<span class="tk-num">1px</span>, -<span class="tk-num">1px</span>);
+  box-shadow: <span class="tk-num">4px</span> <span class="tk-num">4px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.2</span>); }
+
+.stats { display: flex; gap: <span class="tk-num">38px</span>; margin-top: <span class="tk-num">36px</span>; flex-wrap: wrap; }
+.stat b { display: block; font-family: var(--display); font-size: <span class="tk-num">34px</span>; }
+.stat b i { font-style: normal; color: var(--amber); }
+.stat span { color: var(--muted); font-size: <span class="tk-num">13px</span>; font-weight: <span class="tk-num">700</span>; text-transform: uppercase;
+  letter-spacing: <span class="tk-num">0.06em</span>; }
+
+<span class="tk-cmt">/* ---------- sections ---------- */</span>
+.sec { padding: <span class="tk-num">36px</span> <span class="tk-num">0</span>; }
+.sec-head { display: flex; align-items: baseline; gap: <span class="tk-num">14px</span>; margin-bottom: <span class="tk-num">18px</span>; flex-wrap: wrap; }
+.sec-head h2 { font-family: var(--display); font-size: <span class="tk-num">24px</span>; margin: <span class="tk-num">0</span>; text-transform: uppercase;
+  letter-spacing: <span class="tk-num">0.01em</span>; }
+.sec-head .live-tag { display: inline-flex; align-items: center; gap: <span class="tk-num">7px</span>; font-size: <span class="tk-num">12px</span>; font-weight: <span class="tk-num">800</span>;
+  color: var(--live); letter-spacing: <span class="tk-num">0.12em</span>; }
+.sec-head .live-tag::before { content: <span class="tk-str">&quot;&quot;</span>; width: <span class="tk-num">9px</span>; height: <span class="tk-num">9px</span>; border-radius: <span class="tk-num">50</span>%;
+  background: var(--live); animation: pulse <span class="tk-num">2s</span> infinite; }
+.sec-head p { margin: <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">0</span> auto; color: var(--muted2); font-size: <span class="tk-num">13.5px</span>; font-weight: <span class="tk-num">600</span>; }
+
+<span class="tk-cmt">/* tabela e nisjeve — live strip si tabela stacioni */</span>
+.live-strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(<span class="tk-num">240px</span>, <span class="tk-num">1fr</span>);
+  gap: <span class="tk-num">12px</span>; overflow-x: auto; padding: <span class="tk-num">6px</span> <span class="tk-num">4px</span> <span class="tk-num">12px</span>; scroll-snap-type: x mandatory; }
+.live-strip::-webkit-scrollbar { height: <span class="tk-num">8px</span>; }
+.live-strip::-webkit-scrollbar-thumb { background: var(--text); border-radius: <span class="tk-num">4px</span>; }
+.live-card { scroll-snap-align: start; background: var(--board); color: <span class="tk-str">#fff</span>;
+  border-radius: <span class="tk-num">12px</span>; padding: <span class="tk-num">18px</span>; cursor: pointer; position: relative;
+  border: <span class="tk-num">3px</span> solid var(--text); box-shadow: <span class="tk-num">5px</span> <span class="tk-num">5px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.18</span>);
+  transition: transform .<span class="tk-num">15s</span>; }
+.live-card:hover { transform: translate(-<span class="tk-num">2px</span>, -<span class="tk-num">2px</span>); }
+.live-card .dest { font-weight: <span class="tk-num">800</span>; font-size: <span class="tk-num">16px</span>; letter-spacing: <span class="tk-num">0.02em</span>; }
+.live-card .t { font-family: var(--mono); font-size: <span class="tk-num">30px</span>; font-weight: <span class="tk-num">700</span>;
+  color: var(--board-amber); margin: <span class="tk-num">8px</span> <span class="tk-num">0</span> <span class="tk-num">4px</span>; letter-spacing: <span class="tk-num">0.06em</span>;
+  text-shadow: <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">14px</span> rgba(<span class="tk-num">255</span>,<span class="tk-num">176</span>,<span class="tk-num">32</span>,<span class="tk-num">0.45</span>); }
+.live-card .cd { color: <span class="tk-str">#9fb0cc</span>; font-size: <span class="tk-num">13px</span>; font-weight: <span class="tk-num">600</span>; }
+.live-card .cd b { color: var(--board-amber); }
+
+<span class="tk-cmt">/* route grid — karta bilete */</span>
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(<span class="tk-num">300px</span>, <span class="tk-num">1fr</span>)); gap: <span class="tk-num">16px</span>; }
+.rcard { background: var(--card); border: <span class="tk-num">2px</span> solid var(--text); border-radius: var(--radius);
+  padding: <span class="tk-num">20px</span>; cursor: pointer; transition: transform .<span class="tk-num">15s</span>, box-shadow .<span class="tk-num">15s</span>;
+  display: flex; flex-direction: column; gap: <span class="tk-num">12px</span>;
+  box-shadow: <span class="tk-num">5px</span> <span class="tk-num">5px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.12</span>); position: relative; overflow: hidden; }
+.rcard::before { content: <span class="tk-str">&quot;&quot;</span>; position: absolute; left: <span class="tk-num">0</span>; top: <span class="tk-num">0</span>; bottom: <span class="tk-num">0</span>; width: <span class="tk-num">7px</span>;
+  background: repeating-linear-gradient(<span class="tk-num">180deg</span>, var(--amber) <span class="tk-num">0</span> <span class="tk-num">14px</span>, <span class="tk-str">#fff</span> <span class="tk-num">14px</span> <span class="tk-num">24px</span>); }
+.rcard:hover { transform: translate(-<span class="tk-num">2px</span>, -<span class="tk-num">3px</span>); box-shadow: <span class="tk-num">8px</span> <span class="tk-num">9px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.16</span>); }
+.rcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: <span class="tk-num">10px</span>; }
+.rcard h3 { margin: <span class="tk-num">0</span>; font-size: <span class="tk-num">21px</span>; font-weight: <span class="tk-num">800</span>; letter-spacing: -<span class="tk-num">0.01em</span>; }
+.badge { font-size: <span class="tk-num">11px</span>; font-weight: <span class="tk-num">800</span>; padding: <span class="tk-num">6px</span> <span class="tk-num">11px</span>; border-radius: <span class="tk-num">999px</span>; white-space: nowrap;
+  letter-spacing: <span class="tk-num">0.05em</span>; text-transform: uppercase; border: <span class="tk-num">2px</span> solid; }
+.badge.ok { background: <span class="tk-str">#e6f7ef</span>; color: <span class="tk-str">#0b7a52</span>; border-color: <span class="tk-str">#0b7a52</span>; }
+.badge.warn { background: <span class="tk-str">#fdf3e3</span>; color: <span class="tk-str">#b26a00</span>; border-color: <span class="tk-str">#d89a2b</span>; }
+.badge.na { background: <span class="tk-str">#eef1f6</span>; color: var(--muted); border-color: var(--muted2); }
+.rcard-next { display: flex; align-items: baseline; gap: <span class="tk-num">10px</span>; }
+.rcard-next .big { font-family: var(--mono); font-size: <span class="tk-num">36px</span>; font-weight: <span class="tk-num">700</span>; color: var(--amber); }
+.rcard-next .lbl { color: var(--muted); font-size: <span class="tk-num">13px</span>; font-weight: <span class="tk-num">600</span>; }
+.rcard-meta { display: flex; gap: <span class="tk-num">16px</span>; color: var(--muted); font-size: <span class="tk-num">13.5px</span>; font-weight: <span class="tk-num">600</span>;
+  border-top: <span class="tk-num">2px</span> dashed rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.18</span>); padding-top: <span class="tk-num">12px</span>; margin-top: auto; }
+.rcard-meta b { color: var(--text); }
+.term-chip { display: inline-flex; align-items: center; gap: <span class="tk-num">6px</span>; font-size: <span class="tk-num">12px</span>; color: var(--text);
+  background: var(--card2); border: <span class="tk-num">2px</span> solid var(--line); padding: <span class="tk-num">6px</span> <span class="tk-num">12px</span>; border-radius: <span class="tk-num">999px</span>;
+  font-weight: <span class="tk-num">700</span>; width: fit-content; }
+.empty { text-align: center; padding: <span class="tk-num">60px</span> <span class="tk-num">20px</span>; color: var(--muted); }
+.empty b { display: block; font-size: <span class="tk-num">20px</span>; color: var(--text); margin-bottom: <span class="tk-num">8px</span>; }
+
+<span class="tk-cmt">/* ---------- detail — bileta e madhe ---------- */</span>
+.back { display: inline-flex; align-items: center; gap: <span class="tk-num">8px</span>; color: var(--muted); font-weight: <span class="tk-num">800</span>;
+  font-size: <span class="tk-num">14px</span>; margin: <span class="tk-num">26px</span> <span class="tk-num">0</span> <span class="tk-num">6px</span>; cursor: pointer; background: none; border: none; padding: <span class="tk-num">6px</span> <span class="tk-num">0</span>; }
+.back:hover { color: var(--text); }
+.d-hero { background: <span class="tk-str">#fff</span>; border: <span class="tk-num">3px</span> solid var(--text);
+  border-radius: <span class="tk-num">20px</span>; padding: clamp(<span class="tk-num">24px</span>, <span class="tk-num">4vw</span>, <span class="tk-num">44px</span>); margin: <span class="tk-num">10px</span> <span class="tk-num">0</span> <span class="tk-num">22px</span>; position: relative;
+  box-shadow: <span class="tk-num">8px</span> <span class="tk-num">8px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.14</span>); overflow: hidden; }
+.d-hero::after { content: <span class="tk-str">&quot;BILETA&quot;</span>; position: absolute; right: <span class="tk-num">22px</span>; top: <span class="tk-num">18px</span>;
+  font-family: var(--display); font-size: <span class="tk-num">13px</span>; letter-spacing: <span class="tk-num">0.3em</span>; color: var(--line); }
+.d-hero h1 { margin: <span class="tk-num">14px</span> <span class="tk-num">0</span> <span class="tk-num">6px</span>; font-family: var(--display); font-size: clamp(<span class="tk-num">36px</span>, <span class="tk-num">6vw</span>, <span class="tk-num">60px</span>);
+  text-transform: uppercase; letter-spacing: <span class="tk-num">0</span>; }
+.d-hero .from { color: var(--muted); font-weight: <span class="tk-num">700</span>; margin-bottom: <span class="tk-num">20px</span>; font-size: <span class="tk-num">15px</span>; }
+.d-perf { border-top: <span class="tk-num">3px</span> dashed rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.22</span>); margin: <span class="tk-num">22px</span> -<span class="tk-num">44px</span>; }
+.d-next { display: flex; align-items: center; gap: <span class="tk-num">18px</span>; flex-wrap: wrap; }
+.d-next .cd-big { font-family: var(--mono); font-size: clamp(<span class="tk-num">40px</span>, <span class="tk-num">6vw</span>, <span class="tk-num">58px</span>); font-weight: <span class="tk-num">700</span>;
+  color: var(--live); }
+.d-next .cd-lbl { color: var(--muted); font-size: <span class="tk-num">14px</span>; font-weight: <span class="tk-num">600</span>; }
+.d-next .cd-lbl b { color: var(--text); font-family: var(--mono); font-size: <span class="tk-num">19px</span>; }
+.d-actions { margin-left: auto; display: flex; gap: <span class="tk-num">10px</span>; flex-wrap: wrap; }
+.btn { border: <span class="tk-num">3px</span> solid var(--text); border-radius: <span class="tk-num">12px</span>; padding: <span class="tk-num">12px</span> <span class="tk-num">20px</span>; font-weight: <span class="tk-num">800</span>;
+  font-size: <span class="tk-num">14.5px</span>; cursor: pointer; transition: transform .<span class="tk-num">12s</span>, box-shadow .<span class="tk-num">12s</span>;
+  display: inline-flex; align-items: center; gap: <span class="tk-num">8px</span>; box-shadow: <span class="tk-num">4px</span> <span class="tk-num">4px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.2</span>); }
+.btn:hover { transform: translate(-<span class="tk-num">2px</span>, -<span class="tk-num">2px</span>); box-shadow: <span class="tk-num">6px</span> <span class="tk-num">6px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.22</span>); }
+.btn:active { transform: translate(<span class="tk-num">1px</span>, <span class="tk-num">1px</span>); box-shadow: <span class="tk-num">2px</span> <span class="tk-num">2px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.2</span>); }
+.btn.amber { background: var(--amber); color: <span class="tk-str">#fff</span>; }
+.btn.ghost { background: <span class="tk-str">#fff</span>; color: var(--text); }
+
+.d-grid { display: grid; grid-template-columns: <span class="tk-num">1.4fr</span> <span class="tk-num">1fr</span>; gap: <span class="tk-num">16px</span>; }
+<span class="tk-at">@media</span> (max-width: <span class="tk-num">860px</span>) { .d-grid { grid-template-columns: <span class="tk-num">1fr</span>; } }
+.panel { background: <span class="tk-str">#fff</span>; border: <span class="tk-num">2px</span> solid var(--text); border-radius: var(--radius);
+  padding: <span class="tk-num">22px</span>; box-shadow: <span class="tk-num">5px</span> <span class="tk-num">5px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.10</span>); }
+.panel h3 { margin: <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">14px</span>; font-size: <span class="tk-num">13px</span>; letter-spacing: <span class="tk-num">0.12em</span>; text-transform: uppercase;
+  color: var(--text); font-weight: <span class="tk-num">800</span>; border-bottom: <span class="tk-num">3px</span> solid var(--amber);
+  display: inline-block; padding-bottom: <span class="tk-num">6px</span>; }
+
+.timeline { display: flex; flex-direction: column; }
+.trow { display: flex; align-items: center; gap: <span class="tk-num">14px</span>; padding: <span class="tk-num">11px</span> <span class="tk-num">4px</span>;
+  border-bottom: <span class="tk-num">1px</span> dashed rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.16</span>); }
+.trow:last-child { border-bottom: none; }
+.trow .tm { font-family: var(--mono); font-size: <span class="tk-num">20px</span>; font-weight: <span class="tk-num">700</span>; min-width: <span class="tk-num">66px</span>; }
+.trow .op { color: var(--muted); font-size: <span class="tk-num">13.5px</span>; font-weight: <span class="tk-num">600</span>; flex: <span class="tk-num">1</span>; }
+.trow.past { opacity: <span class="tk-num">0.35</span>; }
+.trow.next { background: <span class="tk-str">#e6f7ef</span>; margin: <span class="tk-num">0</span> -<span class="tk-num">12px</span>; padding: <span class="tk-num">11px</span> <span class="tk-num">16px</span>; border-radius: <span class="tk-num">12px</span>;
+  border: <span class="tk-num">2px</span> solid <span class="tk-str">#0b7a52</span>; }
+.trow.next .tm { color: <span class="tk-str">#0b7a52</span>; }
+.trow.next .tag { font-size: <span class="tk-num">11px</span>; font-weight: <span class="tk-num">800</span>; color: <span class="tk-str">#fff</span>; background: <span class="tk-str">#0b7a52</span>;
+  padding: <span class="tk-num">4px</span> <span class="tk-num">10px</span>; border-radius: <span class="tk-num">999px</span>; letter-spacing: <span class="tk-num">0.06em</span>; }
+
+.kv { display: flex; justify-content: space-between; align-items: center; padding: <span class="tk-num">12px</span> <span class="tk-num">0</span>;
+  border-bottom: <span class="tk-num">1px</span> solid var(--line); gap: <span class="tk-num">12px</span>; }
+.kv:last-child { border-bottom: none; }
+.kv .k { color: var(--muted); font-weight: <span class="tk-num">700</span>; font-size: <span class="tk-num">14px</span>; }
+.kv .v { font-weight: <span class="tk-num">800</span>; font-size: <span class="tk-num">16px</span>; text-align: right; }
+.kv .v small { display: block; color: var(--muted2); font-weight: <span class="tk-num">600</span>; font-size: <span class="tk-num">12px</span>; }
+.kv .v .mono { font-family: var(--mono); }
+.op-row { display: flex; align-items: center; justify-content: space-between; gap: <span class="tk-num">10px</span>; padding: <span class="tk-num">10px</span> <span class="tk-num">0</span>;
+  border-bottom: <span class="tk-num">1px</span> solid var(--line); }
+.op-row:last-child { border-bottom: none; }
+.op-row .nm { font-weight: <span class="tk-num">700</span>; }
+.tel { font-family: var(--mono); font-size: <span class="tk-num">14px</span>; color: var(--amber2); font-weight: <span class="tk-num">700</span>;
+  border: <span class="tk-num">2px</span> solid var(--amber); padding: <span class="tk-num">7px</span> <span class="tk-num">14px</span>; border-radius: <span class="tk-num">999px</span>; background: <span class="tk-str">#fff</span>; }
+.tel:hover { background: var(--amber); color: <span class="tk-str">#fff</span>; }
+
+.src { margin-top: <span class="tk-num">14px</span>; }
+.src summary { cursor: pointer; color: var(--muted); font-weight: <span class="tk-num">700</span>; font-size: <span class="tk-num">13.5px</span>; }
+.src ul { margin: <span class="tk-num">10px</span> <span class="tk-num">0</span> <span class="tk-num">0</span>; padding-left: <span class="tk-num">18px</span>; color: var(--muted2); font-size: <span class="tk-num">13px</span>; }
+.src li { margin-bottom: <span class="tk-num">6px</span>; word-break: break-all; }
+.src a { color: var(--amber2); }
+.disclaimer { margin-top: <span class="tk-num">18px</span>; font-size: <span class="tk-num">13px</span>; color: var(--muted); line-height: <span class="tk-num">1.6</span>;
+  border-left: <span class="tk-num">4px</span> solid var(--amber); padding-left: <span class="tk-num">14px</span>; background: var(--card2);
+  padding: <span class="tk-num">12px</span> <span class="tk-num">12px</span> <span class="tk-num">12px</span> <span class="tk-num">16px</span>; border-radius: <span class="tk-num">0</span> <span class="tk-num">10px</span> <span class="tk-num">10px</span> <span class="tk-num">0</span>; }
+
+<span class="tk-cmt">/* terminals */</span>
+.tcard { background: <span class="tk-str">#fff</span>; border: <span class="tk-num">2px</span> solid var(--text); border-radius: var(--radius);
+  padding: <span class="tk-num">24px</span>; margin-bottom: <span class="tk-num">16px</span>; box-shadow: <span class="tk-num">5px</span> <span class="tk-num">5px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.10</span>); }
+.tcard h3 { margin: <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">4px</span>; font-family: var(--display); font-size: <span class="tk-num">22px</span>; text-transform: uppercase; }
+.tcard .addr { color: var(--muted); font-size: <span class="tk-num">14px</span>; margin-bottom: <span class="tk-num">14px</span>; font-weight: <span class="tk-num">600</span>; }
+.tcard .routes { display: flex; flex-wrap: wrap; gap: <span class="tk-num">8px</span>; }
+.tcard .routes button { background: <span class="tk-str">#fff</span>; border: <span class="tk-num">2px</span> solid var(--text); color: var(--text);
+  padding: <span class="tk-num">8px</span> <span class="tk-num">15px</span>; border-radius: <span class="tk-num">999px</span>; font-weight: <span class="tk-num">700</span>; font-size: <span class="tk-num">13.5px</span>; cursor: pointer;
+  transition: all .<span class="tk-num">12s</span>; }
+.tcard .routes button:hover { background: var(--text); color: <span class="tk-str">#fff</span>; }
+
+<span class="tk-cmt">/* modal */</span>
+.overlay { position: fixed; inset: <span class="tk-num">0</span>; background: rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.55</span>); backdrop-filter: blur(<span class="tk-num">6px</span>);
+  display: flex; align-items: center; justify-content: center; z-index: <span class="tk-num">100</span>; padding: <span class="tk-num">20px</span>; }
+.modal { background: <span class="tk-str">#fff</span>; border: <span class="tk-num">3px</span> solid var(--text); border-radius: <span class="tk-num">20px</span>; padding: <span class="tk-num">28px</span>;
+  max-width: <span class="tk-num">480px</span>; width: <span class="tk-num">100</span>%; box-shadow: <span class="tk-num">8px</span> <span class="tk-num">8px</span> <span class="tk-num">0</span> rgba(<span class="tk-num">26</span>,<span class="tk-num">36</span>,<span class="tk-num">64</span>,<span class="tk-num">0.25</span>); }
+.modal h3 { margin: <span class="tk-num">0</span> <span class="tk-num">0</span> <span class="tk-num">8px</span>; font-size: <span class="tk-num">21px</span>; font-family: var(--display); text-transform: uppercase; }
+.modal p { color: var(--muted); font-size: <span class="tk-num">14px</span>; line-height: <span class="tk-num">1.6</span>; }
+.modal textarea { width: <span class="tk-num">100</span>%; min-height: <span class="tk-num">110px</span>; background: var(--card2); border: <span class="tk-num">2px</span> solid var(--text);
+  border-radius: <span class="tk-num">12px</span>; color: var(--text); padding: <span class="tk-num">14px</span>; font-family: inherit; font-size: <span class="tk-num">14px</span>; resize: vertical; }
+.modal .row { display: flex; gap: <span class="tk-num">10px</span>; margin-top: <span class="tk-num">16px</span>; flex-wrap: wrap; }
+
+<span class="tk-cmt">/* footer */</span>
+.ftr { border-top: <span class="tk-num">3px</span> solid var(--text); margin-top: <span class="tk-num">56px</span>; padding: <span class="tk-num">30px</span> <span class="tk-num">0</span> <span class="tk-num">44px</span>;
+  color: var(--muted); font-size: <span class="tk-num">13.5px</span>; background: var(--ink2); }
+.ftr .wrap { display: flex; gap: <span class="tk-num">20px</span>; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.ftr b { color: var(--text); }
+
+<span class="tk-cmt">/* lang toggle + favorites */</span>
+.lang-toggle { display: flex; border: <span class="tk-num">2px</span> solid var(--text); border-radius: <span class="tk-num">999px</span>; overflow: hidden;
+  background: <span class="tk-str">#fff</span>; }
+.lang-toggle button { border: none; background: transparent; padding: <span class="tk-num">7px</span> <span class="tk-num">12px</span>; font-weight: <span class="tk-num">800</span>;
+  font-size: <span class="tk-num">12.5px</span>; cursor: pointer; color: var(--muted); letter-spacing: <span class="tk-num">0.04em</span>; }
+.lang-toggle button.on { background: var(--text); color: <span class="tk-str">#fff</span>; }
+
+.favbtn { border: <span class="tk-num">2px</span> solid var(--text); background: <span class="tk-str">#fff</span>; border-radius: <span class="tk-num">50</span>%; width: <span class="tk-num">34px</span>; height: <span class="tk-num">34px</span>;
+  font-size: <span class="tk-num">16px</span>; line-height: <span class="tk-num">1</span>; cursor: pointer; color: var(--text); flex: none;
+  display: inline-flex; align-items: center; justify-content: center; transition: all .<span class="tk-num">15s</span>; }
+.favbtn:hover { transform: scale(<span class="tk-num">1.12</span>); }
+.favbtn.on { background: var(--amber); border-color: var(--text); color: <span class="tk-str">#fff</span>; }
+
+<span class="tk-at">@media</span> (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+:focus-visible { outline: <span class="tk-num">3px</span> solid var(--amber); outline-offset: <span class="tk-num">2px</span>; }
+</code></pre></div></div>
+</section>
+
+<footer>Krijuar nga <strong>Erion Nezha</strong> — © 2026</footer>
+</div>
+<script>
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
+    document.querySelectorAll('.codepane').forEach(function(x){x.classList.remove('active')});
+    t.classList.add('active');
+    document.getElementById('pane-'+t.dataset.f).classList.add('active');
+  });
+});
+document.querySelectorAll('.copybtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    var pre=b.parentElement.querySelector('pre');
+    navigator.clipboard.writeText(pre.textContent).then(function(){
+      b.textContent='✓ Kopjuar';setTimeout(function(){b.textContent='Kopjo';},1600);
+    });
+  });
+});
+</script>
+</body>
+</html>
